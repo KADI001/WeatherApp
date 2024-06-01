@@ -1,0 +1,13 @@
+<html th:replace="~{fragments/common::page('Authorization', '../static/css/auth-form.css', ~{::sign-up})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<main th:fragment="sign-up" th:replace="~{fragments/auth-form::auth-form
+    (title= 'Sign up',
+    action= 'sign-up',
+    loginValidation= ~{fragments/login-validation::login-validation},
+    passwordValidation= ~{fragments/password-validation::password-validation},
+    suggestionText= 'Already have an account?',
+    suggestionLink= '/log-in',
+    suggestionTextLink= 'Log in')}">
+</main>
+</body>
+</html>

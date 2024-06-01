@@ -1,0 +1,34 @@
+<html th:replace="~{fragments/common::page('Home', '../static/css/home.css', ~{::main})}" lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <div class="content d-flex flex-column" th:fragment="main">
+
+        <header th:replace="~{fragments/header::header}"> </header>
+
+        <main class="main flex-grow-1 d-flex flex-columns">
+            <div class="container-fluid main-container fixed-container d-flex justify-content-center">
+
+                <div class="empty-container w-100 h-100 d-flex align-items-center justify-content-center" th:if="${#lists.isEmpty(cards) and not isAuthorized}">
+                    <p class="empty-text">You'r not authorized</p>
+                </div>
+
+                <div class="empty-container w-100 h-100 d-flex align-items-center justify-content-center" th:if="${#lists.isEmpty(cards) and isAuthorized and not isSearching}">
+                    <p class="empty-text">You don't follow any location</p>
+                </div>
+
+                <div class="empty-container w-100 h-100 d-flex align-items-center justify-content-center" th:if="${#lists.isEmpty(cards) and isSearching}">
+                    <p class="empty-text">Couldn't find any location</p>
+                </div>
+            
+                <div class="row weather-card-container h-100" th:if="${not #lists.isEmpty(cards) and isAuthorized}">
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 p-0 d-flex justify-content-center" th:each="card : ${cards}">
+                        <div th:replace="~{fragments/weathercard::weathercard}"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer th:replace="~{fragments/footer::foooter}">
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<div class="weather-card" th:fragment="weathercard" xmlns:th="http://www.thymeleaf.org">
+    <div class="container-fluid weather-card-header text-center">
+        <h2 class="location-name" th:text="${@org.kadirov.util.StringUtils@limitText(card.locationName, 8)}">City</h2>
+        <form th:action="${isSearching} ? '/add-location' : '/delete-location'" method="post">
+            <input type="hidden" name="locationName" th:value="${card.locationName}">
+            <input type="hidden" name="lat" th:value="${card.latitude}">
+            <input type="hidden" name="lon" th:value="${card.longitude}">
+            <input class="location-button delete-location-button" type="submit" value="" th:if="${not isSearching}">
+            <input class="location-button add-location-button" type="submit" value="" th:if="${isSearching}">
+        </form>
+    </div>
+    <div class="container-fluid weather-card-info">
+        <div class="row m-0">
+            <div class="col-8 p-0">
+                <img class="weather-card-icon" src="../../static/img/weather-icon/clear_sky_d.png" th:attr="src=${iconPath}" th:with="iconPath='../../static/img/weather-icon/' + ${@org.kadirov.util.WeatherIcon@getFileNameByIconName(card.weatherIcon)}" alt="">
+            </div>
+            <div class="col-4 p-0">
+                <div class="container-fluid p-0">
+                    <div class="row m-0">
+                        <div class="col-12 p-0">
+                            <div class="info-indicator">
+                                <img class="info-indicator-icon" src="../../static/img/info/country_icon.png" alt="Ctr">
+                                <span class="info-indicator-text country-text" th:text="${card.country}">GB</span>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="info-indicator mt-1">
+                                <img class="info-indicator-icon" src="../../static/img/info/time_icon.png" alt="Time">
+                                <span class="info-indicator-text time-text" th:text="${card.measurementDateTime}">11:16</span>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="info-indicator minimal-info-indicator mt-1">
+                                <img class="info-indicator-icon" src="../../static/img/info/temperature_icon.png" alt="Temp">
+                                <span class="info-indicator-text temp-text" th:text="((${card.actualTemp} &gt; 0) ? '+' : '') + ${card.actualTemp} + '°C'">+20.3°C</span>
+                            </div>
+                        </div>
+                        <div class="col-12 p-0">
+                            <div class="info-indicator mt-1">
+                                <span class="info-indicator-text fl-temp-text" th:text="'FL ' + ((${card.feelsLikeTemp} &gt; 0) ? '+' : '') + ${card.feelsLikeTemp} + '°C'"> +18.7</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid weather-card-additional-info">
+        <div class="row m-0 weather-card-additional-info-row">
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Cloudness_icon.png" alt="Ctr">
+                    <span class="info-indicator-text cloudness-text" th:text="${card.cloudiness} + '%'">68%</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Humidity_icon.png" alt="Ctr">
+                    <span class="info-indicator-text humidity-text" th:text="${card.humidity} + '%'">28%</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Wind_direction_icon.png" alt="Ctr">
+                    <span class="info-indicator-text wind-direction-text" th:text="${card.windDegree} + '°'">215°</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator minimal-info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Temperature_min_icon.png" alt="Ctr">
+                    <span class="info-indicator-text min-temp-text" th:text="((${card.tempMin} &gt; 0) ? '+' : '') + ${card.tempMin} + '°C'">+15.1°C</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator minimal-info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Temperature_max_icon.png" alt="Ctr">
+                    <span class="info-indicator-text max-temp-text" th:text="((${card.tempMax} &gt; 0) ? '+' : '') + ${card.tempMax} + '°C'">+21.5°C</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator minimal-info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Wind_speed_icon.png" alt="Ctr">
+                    <span>&nbsp;</span>
+                    <span class="info-indicator-text wind-speed-text" th:text="${card.windSpeed}">15.2</span>
+                    <span>&nbsp;</span>
+                    <span class="info-indicator-text wind-speed-mesh-text">m/s</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator minimal-info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Pressure_icon.png" alt="Ctr">
+                    <span>&nbsp;</span>
+                    <span class="info-indicator-text pressure-text" th:text="${card.pressure}">1020 </span>
+                    <span class="info-indicator-text pressure-mesh-text">hPa</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator minimal-info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Sunset_icon.png" alt="Ctr">
+                    <span>&nbsp;</span>
+                    <span class="info-indicator-text sunset-time-text" th:text="${card.sunriseDateTime}">12:39</span>
+                </div>
+            </div>
+            <div class="col-4 p-0 d-flex justify-content-start align-items-center">
+                <div class="info-indicator minimal-info-indicator">
+                    <img class="info-indicator-icon" src="../../static/img/Addtional%20Info/Sunrise_icon.png" alt="Ctr">
+                    <span>&nbsp;</span>
+                    <span class="info-indicator-text sunrise-time-text" th:text="${card.sunsetDateTime}">12:26 <span class="sunrise-time-format-text">AM</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weather-card-forecast text-center">
+        <a class="link-button link-text forecast-button" href="#">Forecast</a>
+    </div>
+</div>

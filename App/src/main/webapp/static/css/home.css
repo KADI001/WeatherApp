@@ -1,0 +1,556 @@
+:root {
+    --main-bg-color: #1B262C;
+    --header-logo-color-first-half: #CCCCCC;
+    --header-logo-color-second-half: #FFFFFF;
+    --header-searcher-bg-color: #445F6E99;
+    --header-unauth-log-in-sign-up-color: #FFFFFF;
+    --header-auth-login-text-color: #FFFFFF;
+    --header-unauth-log-in-sign-up-button-bg-color: #3A5E72;
+    --header-unauth-log-in-sign-up-button-hover-bg-color: #6496B1;
+    --main-weather-cards-container-bg-color: #D9D9D91A;
+    --main-empty-container-text-color: #D8D9DA;
+    --main-weather-card-bg-color: #445F6EB3;
+    --main-weather-card-location-name-color: #fff;
+}
+
+@font-face {
+    font-family: "Poppins Regular";
+    src: url('../font/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Poppins SemiBold";
+    src: url('../font/Poppins/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: "Poppins Light";
+    src: url('../font/Poppins/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: "Poppins ExtraLight";
+    src: url('../font/Poppins/Poppins-ExtraLight.ttf');
+}
+
+/* *, *::after, *::before {
+    box-sizing: border-box;
+} */
+
+h1 {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    min-height: 100vh;
+    height: 100%;
+}
+
+.content {
+    min-height: 100%;
+    gap: 25px 0px;
+}
+
+.fixed-container {
+    max-width: 1140px;
+}
+
+/* Header */
+
+header {
+    /* min-height: 100px; */
+    height: fit-content;
+}
+
+.header-row {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    text-decoration: none;
+    user-select: none;
+    font-size: 40px;
+}
+
+.logo-first-half {
+    font-family: 'Poppins SemiBold';
+    color: var(--header-logo-color-first-half);
+}
+
+.logo-second-half {
+    font-family: 'Poppins Light';
+    color: var(--header-logo-color-second-half);
+}
+
+.searcher-form {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.searcher-submit {
+    float: left;
+
+    width: 50px;
+    height: 50px;
+
+    padding: 0;
+    margin: 0;
+
+    border: none;
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+
+    background-color: var(--header-searcher-bg-color);
+    background-image: url('../img/search.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25px 25px;
+
+    transition: background-size .1s linear;
+}
+
+.searcher-submit:hover {
+    background-size: 30px 30px;
+}
+
+.searcher-input {
+    float: left;
+
+    width: 310px;
+    height: 50px;
+
+    padding: 0;
+    padding-left: 10px;
+    margin-left: 1px;
+
+    font-family: 'Poppins ExtraLight';
+    font-size: 20px;
+    color: white;
+
+    border: none;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+
+    box-shadow: none;
+
+    background-color: var(--header-searcher-bg-color);
+}
+
+.searcher-input:focus {
+    outline: none
+}
+
+.searcher-input::placeholder {
+    font-family: 'Poppins ExtraLight';
+    font-size: 20px;
+    color: #8C8C8C66;
+}
+
+.link-button {
+    width: 100px;
+    height: 50px;
+    border-radius: 100px;
+    background: var(--header-unauth-log-in-sign-up-button-bg-color);
+    transition: background-color .2s linear;
+}
+
+.link-button:hover {
+    background: var(--header-unauth-log-in-sign-up-button-hover-bg-color);
+}
+
+.link-button-inner {
+    width: fit-content;
+    height: fit-content;
+}
+
+.link-text {
+    user-select: none;
+    text-align: center;
+    font-family: 'Poppins SemiBold';
+    text-decoration: none;
+    font-size: 18px;
+    color: var(--header-unauth-log-in-sign-up-color);
+}
+
+.link-text:hover {
+    color: var(--header-unauth-log-in-sign-up-color);
+}
+
+.auth-container {
+    gap: 0px 10px;
+}
+
+.login {
+    font-size: 24px;
+    color: var(--header-auth-login-text-color);
+    margin: 0;
+    font-family: "Poppins Light";
+    margin-right: 30px;
+}
+
+.logout {
+    width: 35%;
+    height: 100%;
+    background-image: url('../img/log-out.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+/* Main */
+
+.weather-card-container {
+    padding: 20px 10px;
+    gap: 20px 0;
+    min-width: 260px;
+    min-height: 320px;
+}
+
+.main-container {
+    border-radius: 30px;
+    background-color: var(--main-weather-cards-container-bg-color);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.empty-text {
+    color: var(--main-empty-container-text-color);
+    font-size: 40px;
+    font-family: 'Poppins Light';
+}
+
+.weather-card {
+    position: relative;
+    padding-top: 15px;
+    width: 260px;
+    height: 320px;
+    border-radius: 13px;
+    background-color: var(--main-weather-card-bg-color);
+}
+
+.weather-card-icon {
+    object-fit: contain;
+    width: 90%;
+    height: 100%;
+    max-height: 110px;
+}
+
+.location-name-container {
+    transition: flex-grow .2s linear;
+}
+
+.location-name {
+    display: inline-block;
+    margin: 0;
+    width: 180px;
+    height: 40px;
+    /* font-size:larger; */
+    font-size: 32px;
+    font-family: "Poppins Regular";
+    color: var(--main-weather-card-location-name-color);
+}
+
+.location-button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+
+    width: 25px;
+    height: 25px;
+
+    opacity: 0;
+
+    background: transparent;
+    background-size: 100% 100%;
+
+    border: 0;
+}
+
+.weather-card:hover .location-button {
+    opacity: 100;
+}
+
+.delete-location-button {
+    background-image: url("../img/delete_location_icon.png");
+}
+
+.add-location-button {
+    background-image: url("../img/add_location_icon.png");
+}
+
+.weather-card-header {
+    position: relative;
+    padding: 0 10px;
+}
+
+.weather-card-info {
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.info-indicator {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 0 5px;
+}
+
+.info-indicator-text {
+    color: white;
+    font-family: 'Poppins Regular';
+}
+
+.info-indicator-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.country-text {
+    font-size: 20px;
+}
+
+.time-text {
+    font-size: 16px;
+}
+
+.time-format-text {
+    font-size: 10px;
+}
+
+.temp-text {
+    font-size: 14px;
+}
+
+.temp-sign-text {
+    font-size: 12px;
+}
+
+.prefix-fl-temp-text {
+    font-size: 9px;
+}
+
+.fl-temp-text {
+    font-size: 12px;
+}
+
+.minimal-info-indicator {
+    gap: 0;
+}
+
+.weather-card-additional-info {
+    margin-top: 10px;
+    padding: 0 10px;
+}
+
+.weather-card-additional-info-row {
+    gap: 15px 0;
+    transition: gap .1s linear;
+}
+
+.cloudness-text, .wind-direction-text, .humidity-text {
+    font-size: 15px;
+}
+
+.min-temp-text {
+    font-size: 12px;
+}
+
+.max-temp-text {
+    font-size: 12px;
+}
+
+.wind-speed-text {
+    font-size: 14px;
+}
+
+.wind-speed-mesh-text {
+    font-size: 9px;
+}
+
+.pressure-text {
+    font-size: 13px;
+}
+
+.pressure-mesh-text {
+    font-size: 10px;
+}
+
+.sunset-time-text {
+    font-size: 12px;
+}
+
+.sunset-time-format-text {
+    font-size: 10px;
+}
+
+.sunrise-time-text {
+    font-size: 12px;
+}
+
+.sunrise-time-format-text {
+    font-size: 10px;
+}
+
+.weather-card-forecast {
+    position: absolute;
+    width: 100%;
+    bottom: 12px;
+    margin-top: 13px;
+    height: fit-content;
+}
+
+.forecast-button {
+    padding: 6px;
+    width: 80px;
+    height: 30px;
+    font-size: 0;
+    opacity: 0;
+
+    transition: font-size .2s linear;
+}
+
+/* Footer */
+
+.footer-container {
+    min-height: 70px;
+    border-radius: 30px;
+    background-color: #D9D9D91A;
+}
+
+/* Media Queries */
+
+@media only screen and (min-width: 768px) {
+    .weather-card:hover .weather-card-additional-info-row {
+        gap: 5px 0;
+    }
+
+    .weather-card:hover .forecast-button {
+        opacity: 100;
+        font-size: 14px;
+    }
+
+    .location-button {
+        width: 0;
+        height: 0;
+
+        transition: width .2s linear;
+        transition: height .2s linear;
+    }
+
+    .weather-card:hover .location-button {
+        width: 25px;
+        height: 25px;
+    }
+
+    .location-button:hover {
+        background-color: var(--header-unauth-log-in-sign-up-button-bg-color);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .weather-card-additional-info-row {
+        gap: 5px 0;
+    }
+
+    .forecast-button {
+        opacity: 100;
+        font-size: 14px;
+    }
+
+    .location-button {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .logo {
+        font-size: 35px;
+    }
+
+    .login {
+        font-size: 22px;
+        margin-right: 10px;
+    }
+
+    .auth-button {
+        width: 90px;
+        height: 45px;
+    }
+
+    .auth-text {
+        font-size: 16px;
+    }
+
+    .empty-text {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .logo {
+        font-size: 25px;
+    }
+
+    .login {
+        font-size: 20px;
+        margin-right: 5px;
+    }
+
+    .auth-button {
+        width: 80px;
+        height: 40px;
+    }
+
+    .auth-text {
+        font-size: 14px;
+    }
+
+    .empty-text {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .login {
+        font-size: 18px;
+        margin-right: 0px;
+    }
+
+    .auth-button {
+        width: 70px;
+        height: 35px;
+    }
+
+    .auth-text {
+        font-size: 12px;
+    }
+
+    .empty-text {
+        font-size: 15px;
+    }
+}

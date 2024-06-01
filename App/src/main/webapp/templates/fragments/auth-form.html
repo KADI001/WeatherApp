@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<main class="main d-flex justify-content-center align-items-center"
+      th:fragment="auth-form(title, action, passwordValidation, suggestionText, suggestionLink, suggestionTextLink)"
+      xmlns:th="http://www.thymeleaf.org">
+    <div class="auth-container d-flex flex-column align-items-center">
+        <h1 class="title" th:text="${title}">Auth</h1>
+
+        <form class="form" th:action="${action}" method="post">
+
+            <label class="label username-label" for="login-input">Login</label>
+            <div class="input-container">
+                <input id="login-input" class="input" type="text" name="login" required pattern=".*\S+.*" minlength="4" maxlength="30">
+                <span class="invalid-data-warning" th:if="${loginInvalid}">* Invalid login</span>
+                <span class="invalid-data-warning" th:if="${loginExists}">* Already exists</span>
+            </div>
+
+            <label class="label password-label" for="password-input">Password</label>
+            <div class="input-container">
+                <input id="password-input" class="input" type="password" name="password" required pattern=".*\S+.*" minlength="5" maxlength="30">
+                <span class="invalid-data-warning" th:if="${loginNotExistOrWrongPassword}">* Login doesn't exists or wrong password</span>
+                <span class="invalid-data-warning" th:if="${passwordInvalid}">* Invalid password</span>
+            </div>
+
+            <input type="hidden" name="redirectUrl" th:if="${param.redirectUrl != null}"
+                   th:value="${param.redirectUrl}">
+
+            <div class="submit-container w-100 d-flex justify-content-center">
+                <input class="submit" type="submit" th:value="${title}">
+            </div>
+        </form>
+
+        <div class="line"></div>
+
+        <span class="suggestion">[[${suggestionText}]]
+            <a class="redirection" th:href="${suggestionLink}" th:text="${suggestionTextLink}"></a>
+        </span>
+    </div>
+</main>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<header class="header" th:fragment="header">
+    <div class="container header-container fixed-container">
+        <div class="row gy-3 header-row align-items-center">
+            <div class="col-6 col-lg-3 order-lg-first">
+                <h1 class="logo">
+                    <a href="/" class="logo"><span class="logo-first-half">Weather</span><span class="logo-second-half">App</span></a>
+                </h1>
+            </div>
+
+            <div class="col-6 col-lg-3 order-lg-last auth-container d-flex justify-content-end align-items-center">
+                <p class="login" th:if="${isAuthorized}" th:text="${isAuthorized} ? ${@org.kadirov.util.StringUtils@limitText(user.login, 10)} : 'Login'">Login</p>
+                <a href="/log-out"
+                   class="auth-button auth-text link-button link-text d-flex justify-content-center align-items-center"
+                   th:if="${isAuthorized}">
+                    <div class="logout"></div>
+                </a>
+                <a href="/log-in" class="link-button link-text d-flex justify-content-center align-items-center"
+                   th:if="${not isAuthorized}">Log in</a>
+                <a href="/sign-up" class="link-button link-text d-flex justify-content-center align-items-center"
+                   th:if="${not isAuthorized}">Sign up</a>
+            </div>
+
+            <div class="col-12 col-lg-6">
+                <form class="searcher-form d-flex justify-content-center align-items-center" action="/search"
+                      method="GET">
+                    <input class="searcher-submit" type="submit" value="">
+                    <input class="searcher-input" type="text" name="locationName" th:value="${param.locationName}"
+                           placeholder="Enter the location name" required pattern=".*\S+.*" minlength="1" maxlength="20">
+                </form>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/static/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../static/css/error.css" th:href="@{/static/css/error.css}">
+    <title>Error</title>
+</head>
+<body>
+    <div class="content">
+        <div class="main-container container-fluid d-flex flex-column justify-content-center align-items-center">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="error-title">Упс... что-то пошло не так((</h1>
+                </div>
+                <div class="col-12">
+                    <span class="error-status-code" th:text="${error.statusCode}"></span>
+                </div>
+                <div class="col-12">
+                    <span class="error-message" th:text="${error.message}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
