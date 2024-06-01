@@ -1,4 +1,4 @@
 # Project exclude paths
-/App/target/
-/Database/target/
-/Domain/target/
+/target
+.idea
+weather-watcher.iml
